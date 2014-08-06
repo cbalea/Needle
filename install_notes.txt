@@ -1,0 +1,7 @@
+- install Pillow package from here: http://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
+- pip install needle
+
+### - download and install PerceptualDiff: http://pdiff.sourceforge.net/
+###- when running PerceptualDiff.exe, if you get a FreeImage.dll error, use: http://www.dll-files.com/dllindex/dll-files.shtml?freeimage
+
+- install imagemagick http://www.imagemagick.org/ 
