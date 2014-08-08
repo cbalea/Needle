@@ -3,10 +3,31 @@ from subprocess import Popen
 import time
 
 from needle.cases import NeedleTestCase
+from selenium.webdriver.support.wait import WebDriverWait
+
+from image_referrers import ImageReferrers
 from server_related import ServerRelated
 
 
-class TestBase(NeedleTestCase):
+class TestBase(NeedleTestCase, ImageReferrers):
+    
+    def __init__(self, *args, **kwargs):
+        super(NeedleTestCase, self).__init__(*args, **kwargs)
+        self.output_directory = ServerRelated().get_path_in_project("screenshots")
+        self.baseline_directory = ServerRelated().get_path_in_project("screenshots/baseline")
+
+        if not os.path.exists(self.output_directory):
+            raise Exception("Screenshots output directory %s does not exist! Please create it." %self.output_directory)
+        if not os.path.exists(self.baseline_directory):
+            raise Exception("Baseline directory %s does not exist! Please create it." %self.baseline_directory)
+    
+    def setUp(self):
+        self.initializeWait(self.driver)
+        NeedleTestCase.setUp(self)
+    
+    def initializeWait(self, driver, timeout=10):
+        self.wait = WebDriverWait(driver, timeout)
+        return self.wait
     
     def split_path_in_subfolder_and_filename(self, file_path):
         filename = file_path.split("\\")[-1]
