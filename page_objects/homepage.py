@@ -11,6 +11,7 @@ class Homepage():
         self.driver = driver
         self.wait = wait
         if fresh_load:
+#             self.driver.get("file:///C:/Users/tim-vm-015/Downloads/Best.htm")
             self.driver.get("http://azaem-web1-test2.awsdev.telegraph.co.uk/best.html")
         self.product_area = self.wait.until(lambda driver:driver.find_element_by_css_selector("div.list-of-entities-item-link"))
 

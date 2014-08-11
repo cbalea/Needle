@@ -5,3 +5,6 @@
 ###- when running PerceptualDiff.exe, if you get a FreeImage.dll error, use: http://www.dll-files.com/dllindex/dll-files.shtml?freeimage
 
 - install imagemagick http://www.imagemagick.org/ 
+
+- to install IE Driver, download IEDriverServer.exe from http://selenium-release.storage.googleapis.com/index.html
+  see config details here: https://code.google.com/p/selenium/wiki/InternetExplorerDriver
