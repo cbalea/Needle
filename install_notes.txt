@@ -1,9 +1,6 @@
 - install Pillow package from here: http://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow
 - pip install needle
 
-### - download and install PerceptualDiff: http://pdiff.sourceforge.net/
-###- when running PerceptualDiff.exe, if you get a FreeImage.dll error, use: http://www.dll-files.com/dllindex/dll-files.shtml?freeimage
-
 - install imagemagick http://www.imagemagick.org/ 
 
 - to install IE Driver, download IEDriverServer.exe from http://selenium-release.storage.googleapis.com/index.html
@@ -25,3 +22,8 @@
             int(d['left']) + int(d['width']),
             int(d['top']) + int(d['height']),
         ))
+
+- for executing tests with junit xml: http://pytest.org/latest/usage.html
+	pip install pytest
+	running: py.test test_name.py --junitxml=results.xml
+	
