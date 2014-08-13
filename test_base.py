@@ -41,6 +41,8 @@ class TestBase(NeedleTestCase, ImageReferrers):
         self.wait = WebDriverWait(driver, timeout)
         return self.wait
     
+    
+    
     def split_path_in_subfolder_and_filename(self, file_path):
         filename = file_path.split("\\")[-1]
         subfolder = file_path[:file_path.index(filename)]
@@ -113,3 +115,32 @@ class TestBase(NeedleTestCase, ImageReferrers):
                 append_msg = " Image widths or heights differ. Diff file not exported."
             
             raise AssertionError("Images differ." + append_msg)
+    
+    def assertElementsAlign(self, direction="vertical", *selectors):
+        alignments = []
+        
+        if len(selectors) < 2:
+            raise Exception("Need at least 2 selectors to compare alignment.")
+        
+        # get elements alignments
+        for sel in selectors:
+            element = self.wait.until(lambda driver:driver.find_element_by_css_selector(sel))
+            if direction == "vertical":
+                alignments.append(element.location['y'])
+            elif direction == "horizontal":
+                alignments.append(element.location['x'])
+        
+        # verify alignments are the same
+        baseline = alignments[0]
+        for i in range(len(alignments)):
+            if alignments[i] != baseline:
+                raise AssertionError("Elements are not aligned %s: \n\t %dpx: %s \n\t %dpx: %s" %(direction, baseline, selectors[0], alignments[i], selectors[i]))
+        
+
+
+
+
+
+
+
+
