@@ -8,3 +8,20 @@
 
 - to install IE Driver, download IEDriverServer.exe from http://selenium-release.storage.googleapis.com/index.html
   see config details here: https://code.google.com/p/selenium/wiki/InternetExplorerDriver
+
+
+- bug reported here: https://github.com/bfirsh/needle/pull/28
+	
+	is fixed by casting to int() in here: needle.driver.py, class NeedleWebElemen
+
+  def get_screenshot(self):
+        """
+        Returns a screenshot of this element as a PIL image.
+        """
+        d = self.get_dimensions()
+        return self._parent.get_screenshot_as_image().crop((
+            int(d['left']),
+            int(d['top']),
+            int(d['left']) + int(d['width']),
+            int(d['top']) + int(d['height']),
+        ))

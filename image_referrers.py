@@ -1,8 +1,20 @@
 class ImageReferrers():
     
-    HOMEPAGE_ELEMENT_TITLE = 'element-title'
-    HOMEPAGE_ELEMENT_IMAGE = 'element-image'
-    HOMEPAGE_ELEMENT_TEXT = 'element-text'
+    def __init__(self, brw):
+        self.brw = brw
     
-    PRODUCT_PAGE_OVERALL_RATING = 'overall-rating'
-    PRODUCT_PAGE_GOLD_RIBBON = 'gold-ribbon'
+    
+    def HOMEPAGE_ELEMENT_TITLE(self):
+        return 'element-title-' + self.brw
+        
+    def HOMEPAGE_ELEMENT_IMAGE(self):
+        return 'element-image-' + self.brw
+    
+    def HOMEPAGE_ELEMENT_TEXT(self):
+        return 'element-text-' + self.brw
+    
+    def PRODUCT_PAGE_OVERALL_RATING(self): 
+        return 'overall-rating-' + self.brw
+    
+    def PRODUCT_PAGE_GOLD_RIBBON(self):
+        return 'gold-ribbon-' + self.brw

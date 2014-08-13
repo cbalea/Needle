@@ -3,6 +3,7 @@ from subprocess import Popen
 import time
 
 from needle.cases import NeedleTestCase
+from needle.driver import NeedleIe, NeedleFirefox
 from selenium.webdriver.support.wait import WebDriverWait
 
 from image_referrers import ImageReferrers
@@ -21,8 +22,19 @@ class TestBase(NeedleTestCase, ImageReferrers):
         if not os.path.exists(self.baseline_directory):
             raise Exception("Baseline directory %s does not exist! Please create it." %self.baseline_directory)
     
+    @classmethod
+    def get_web_driver(cls):
+#         requested_browser = os.environ.get('NEEDLE_BROWSER')
+#         if requested_browser == "ie":
+#         cls.browser = "ie"
+#         return NeedleIe()
+#         else:
+        cls.browser = "ff"
+        return NeedleFirefox()
+    
     def setUp(self):
         self.initializeWait(self.driver)
+        self.imgRef = ImageReferrers(self.__class__.browser)
         NeedleTestCase.setUp(self)
     
     def initializeWait(self, driver, timeout=10):
