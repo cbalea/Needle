@@ -1,0 +1,39 @@
+F tests/test_shanghai.py::TestHomepage::test_homepage_elements_align
+ self = <tests.test_shanghai.TestHomepage testMethod=test_homepage_elements_align>
+ 
+     def test_homepage_elements_align(self):
+ >       self.assertElementsAlign("vertical", self.homepage.element_text_selector, self.homepage.element_title_selector)
+ 
+ tests\test_shanghai.py:23: 
+ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ 
+ self = <tests.test_shanghai.TestHomepage testMethod=test_homepage_elements_align>
+ direction = 'vertical'
+ selectors = ('span.list-of-entities-item-body-rating-item-string', 'h3.list-of-entities-item-headline a')
+ alignments = [810, 492]
+ element = <needle.driver.NeedleWebElement object at 0x02BF5CF0>, baseline = 810
+ 
+     def assertElementsAlign(self, direction="vertical", *selectors):
+         alignments = []
+     
+         if len(selectors) < 2:
+             raise Exception("Need at least 2 selectors to compare alignment.")
+     
+         # get elements alignments
+         for sel in selectors:
+             element = self.wait.until(lambda driver:driver.find_element_by_css_selector(sel))
+             if direction == "vertical":
+                 alignments.append(element.location['y'])
+             elif direction == "horizontal":
+                 alignments.append(element.location['x'])
+     
+         # verify alignments are the same
+         baseline = alignments[0]
+         for i in range(len(alignments)):
+             if alignments[i] != baseline:
+ >               raise AssertionError("Elements are not aligned %s: \n\t %dpx: %s \n\t %dpx: %s" %(direction, baseline, selectors[0], alignments[i], selectors[i]))
+ E               AssertionError: Elements are not aligned vertical: 
+ E               	 810px: span.list-of-entities-item-body-rating-item-string 
+ E               	 492px: h3.list-of-entities-item-headline a
+ 
+ test_base.py:137: AssertionError

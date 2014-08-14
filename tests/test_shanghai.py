@@ -36,5 +36,5 @@ class TestProductPage(TestBase):
     def test_homepage_navigation(self):
         self.store_page = self.product_page.click_go_to_store()
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
